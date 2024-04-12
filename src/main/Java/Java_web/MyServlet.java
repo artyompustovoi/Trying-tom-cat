@@ -25,16 +25,31 @@ public class MyServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Здесь можно реализовать обработку POST-запроса
-        // например, прочитать данные из тела запроса и отправить ответ клиенту
         BufferedReader reader = request.getReader();
         StringBuilder requestBody = new StringBuilder();
         String line;
         while ((line = reader.readLine()) != null) {
             requestBody.append(line);
         }
-        response.setContentType("text/plain");
-        PrintWriter out = response.getWriter();
-        out.println("Received POST request with body: " + requestBody.toString());
+
+        String[] parts = requestBody.toString().split("=");
+        if (parts.length == 2 && "answer".equals(parts[0])) {
+            try {
+                int num = Integer.parseInt(parts[1].trim());
+                String answer = (num == 10) ? "Yes" : "No";
+                response.setContentType("text/plain");
+                PrintWriter out = response.getWriter();
+                out.println("Received POST request with body: " + requestBody.toString());
+                out.println("Answer: " + answer);
+            } catch (NumberFormatException e) {
+                // Handle parsing error
+                e.printStackTrace(); // For debugging
+            }
+        } else {
+            // Invalid request format
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid request format");
+        }
     }
+
+
 }
