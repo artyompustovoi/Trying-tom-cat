@@ -35,7 +35,16 @@
       <version>6.1.0-M2</version>
       <scope>provided</scope>
     </dependency>
-
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>6.1.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.23.1</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>Java_First_web_App</finalName>

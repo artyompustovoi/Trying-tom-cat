@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "file://C:/Users/Артём/IdeaProjects/Java_First_web_App/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <!--<property name="hbm2ddl.auto">update</property> -->
+        <property name="hbm2ddl.auto">create</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/java_web_db</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.username">artem</property>
+
+        <mapping class="mathtest.MathResult"/>
+        <mapping class="mathtest.Question"/>
+    </session-factory>
+</hibernate-configuration>
